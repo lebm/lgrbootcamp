@@ -1,2 +1,2 @@
 [workspace]
-members = ["hello_world", "variables"]
+members = ["hello_world", "variables", "datatypes"]
