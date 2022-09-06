@@ -19,4 +19,26 @@ fn main() {
 
     let p1: usize = 1;
     let p2: isize = 1;
+
+    let c1: char = 'c';
+    let s1: &str = "hello";
+    let s2: String = String::from("hello");
+
+    let a1: [i32; 5] = [1, 2, 3, 4, 5];
+
+    let i1: i32 = a1[4];
+
+    let t1: (i32, i32, i32) = (1, 2, 3);
+    let t2: (i32, f64, &str) = (1, 2.0, "3");
+
+    let s1: &str = t2.2;
+
+    // Destructuring a tuble
+    let (i1, f1, s1) = t2;
+
+    let unit = ();
+
+    type Age = u8;
+
+    let a1: Age = 57;
 }
