@@ -6,4 +6,5 @@ members = [
     "constants_statics",
     "functions",
     "control_flow",
+    "comments",
 ]
