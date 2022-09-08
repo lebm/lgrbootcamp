@@ -27,5 +27,13 @@ name = "hello_world"
 version = "0.1.0"
 
 [[package]]
+name = "ownership"
+version = "0.1.0"
+
+[[package]]
+name = "ownership2"
+version = "0.1.0"
+
+[[package]]
 name = "variables"
 version = "0.1.0"

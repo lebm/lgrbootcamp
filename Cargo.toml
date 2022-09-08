@@ -7,4 +7,6 @@ members = [
     "functions",
     "control_flow",
     "comments",
+    "ownership",
+    "ownership2",
 ]
