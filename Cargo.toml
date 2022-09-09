@@ -10,4 +10,5 @@ members = [
     "ownership",
     "ownership2",
     "borrowing",
+    "slices",
 ]
