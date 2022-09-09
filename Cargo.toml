@@ -9,4 +9,5 @@ members = [
     "comments",
     "ownership",
     "ownership2",
+    "borrowing",
 ]
