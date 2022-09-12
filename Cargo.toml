@@ -11,4 +11,5 @@ members = [
     "ownership2",
     "borrowing",
     "slices",
+    "strings",
 ]
