@@ -12,4 +12,7 @@ members = [
     "borrowing",
     "slices",
     "strings",
+    "structs",
+    "impl_blocks",
+    "tuple_structs",
 ]
