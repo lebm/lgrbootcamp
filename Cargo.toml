@@ -15,4 +15,5 @@ members = [
     "structs",
     "impl_blocks",
     "tuple_structs",
+    "enums",
 ]
