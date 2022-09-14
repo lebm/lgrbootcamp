@@ -13,7 +13,6 @@ struct Product {
     in_stock: bool,
 }
 
-#[allow(dead_code)]
 enum Command {
     Undo,
     Redo,
@@ -27,40 +26,55 @@ enum Command {
 
 // You can create impl block to enums
 impl Command {
-    #[allow(dead_code)]
     fn serialize(&self) -> String {
-        String::from("JSON string")
+        let json_string = match self {
+            Command::Undo => String::from(r#"{"cmd": "undo"}"#),
+            Command::Redo => String::from(r#"{"cmd": "redo"}"#),
+            Command::AddText(s) => {
+                format!(r#"{{"cmd": "addText", "text": "{s}"}}"#)
+            }
+            Command::MoveCursor(line, column) => {
+                format!(r#"{{"cmd": "move_cursor", "line": "{line}, "column": {column}}}"#)
+            }
+            Command::Replace { from, to } => {
+                format!(r#"{{"cmd": "replace", "from": "{from}", "to": "{to}"}}"#)
+            }
+        };
+        json_string
     }
 }
 
-#[allow(unused_variables)]
 fn main() {
-    //    let cmd = Command::Undo;
-    //let cmd = Command::AddText(String::from("test"));
-    //let cmd = Command::MoveCursor(22, 0);
-    //let cmd = Command::Replace {
-    //from: String::from("a"),
-    //to: String::from("b"),
-    //};
+    let cmd1 = Command::Undo;
+    let cmd2 = Command::AddText(String::from("test"));
+    let cmd3 = Command::MoveCursor(22, 0);
+    let cmd4 = Command::Replace {
+        from: String::from("a"),
+        to: String::from("b"),
+    };
+    let cmd5 = Command::Redo;
 
-    //let json_string = cmd.serialize();
-    //println!("{json_string}");
+    println!("{}", cmd1.serialize());
+    println!("{}", cmd2.serialize());
+    println!("{}", cmd3.serialize());
+    println!("{}", cmd4.serialize());
+    println!("{}", cmd5.serialize());
 
-    let age = 35;
+    // let age = 35;
 
-    // match is exhaustive. arms must match all possible values.
-    // "-" matches the rest, like a default arm.
-    match age {
-        1 => print!("Happy 1st Birthday!"),
-        13..=19 => println!("You are teenager!"),
-        _ => println!("Happy Birthday"),
-    }
+    // // match is exhaustive. arms must match all possible values.
+    // // "-" matches the rest, like a default arm.
+    // match age {
+    //     1 => print!("Happy 1st Birthday!"),
+    //     13..=19 => println!("You are teenager!"),
+    //     _ => println!("Happy Birthday"),
+    // }
 
-    // 2nd example
-    // The x var captures whatever values age
-    match age {
-        1 => print!("Happy 1st Birthday!"),
-        13..=19 => println!("You are teenager!"),
-        x => println!("You are {x} years old!"),
-    }
+    // // 2nd example
+    // // The x var captures whatever values age
+    // match age {
+    //     1 => print!("Happy 1st Birthday!"),
+    //     13..=19 => println!("You are teenager!"),
+    //     x => println!("You are {x} years old!"),
+    // }
 }
