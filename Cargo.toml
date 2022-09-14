@@ -17,4 +17,6 @@ members = [
     "tuple_structs",
     "enums",
     "matching",
+    "option",
+    "result",
 ]
