@@ -16,4 +16,5 @@ members = [
     "impl_blocks",
     "tuple_structs",
     "enums",
+    "matching",
 ]
