@@ -1,3 +1,3 @@
 # lgrbootcamp  
 
-Files created during the Bootcamp.  
+Files created during the Let´s Get Rusty Bootcamp.  
