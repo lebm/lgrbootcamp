@@ -21,4 +21,5 @@ members = [
     "result",
     "vectors",
     "my_package",
+    "auth_service",
 ]

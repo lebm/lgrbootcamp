@@ -25,3 +25,11 @@ my_package on  main [?] is 📦 v0.1.0 via 🦀 v1.63.0
    ├── lib.rs
    └── main.rs
 ```
+
+## Modules
+
+* Control  scope and privacy
+* Contains functions, types, traits, etc.
+* Explicitly defined (mod keyword)
+  * Not mapped to the filesystem
+    * Flexible and easy conditional compilation
