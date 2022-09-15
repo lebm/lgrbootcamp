@@ -43,6 +43,10 @@ name = "matching"
 version = "0.1.0"
 
 [[package]]
+name = "my_package"
+version = "0.1.0"
+
+[[package]]
 name = "option"
 version = "0.1.0"
 

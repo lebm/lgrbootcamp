@@ -20,4 +20,5 @@ members = [
     "option",
     "result",
     "vectors",
+    "my_package",
 ]
