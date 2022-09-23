@@ -25,4 +25,5 @@ members = [
     "auth_service_file_modules",
     "auth_service_file_modules2",
     "bank",
+    "generics",
 ]
