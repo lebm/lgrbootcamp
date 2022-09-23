@@ -2,6 +2,7 @@
 // "T" is the type paramter used for payload field.
 // This struct may be BrowserCommand<String>, BrowserCommand<i32> ena so on,
 #[allow(unused_variables)]
+#[allow(dead_code)]
 struct BrowserCommand<T> {
     name: String,
     payload: T,
@@ -13,6 +14,10 @@ impl<T> BrowserCommand<T> {
         // Using a variable with the same name of the field is a ergonomic shorthand.
         // You don't have to write "name: name", or "payload: payload"
         BrowserCommand { name, payload }
+    }
+
+    fn get_payload(&self) -> &T {
+        &self.payload
     }
 }
 
@@ -36,4 +41,13 @@ fn main() {
     cmd1.print_payload();
     // BrowserCommand<i32> does not have a print_payload method
     //cmd2.print_payload();
+    let p1 = cmd1.get_payload();
+    let p2 = cmd2.get_payload();
+    serialize_payload(p1);
+    serialize_payload(p2);
+}
+
+#[allow(unused_variables)]
+fn serialize_payload<T>(payload: T) -> String {
+    "placeholder".to_owned()
 }
