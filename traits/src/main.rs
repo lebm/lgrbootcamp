@@ -67,6 +67,43 @@ impl Paint for House {
     }
 }
 
+/// Wrong. In this example "T" can be any type, but the compiler can find a paint method for any type.
+/// "paint" exists only for values that implements the Paint trait.
+// fn paint_red<T>(object: &T) {
+//     object.paint("red");
+// }
+
+/// Ok. In this example "T" can be any type as long as it implements the Paint trait. (trait boud)
+fn paint_red<T: Paint>(object: &T) {
+    object.paint("red");
+}
+
+/// Another example ...
+fn paint_blue(object: &impl Paint) {
+    object.paint("blue");
+}
+
+/// Third way
+fn paint_green<T>(object: &T)
+where
+    T: Paint,
+{
+    object.paint("green");
+}
+
+/// two bounds
+fn paint_vehicle_green<T>(object: &T)
+where
+    T: Paint + Park,
+{
+    object.paint("green");
+}
+
+/// You can return a trait bound
+fn create_paintable_object() -> impl Paint {
+    House {}
+}
+
 fn main() {
     println!("Hello, world!");
     let carro = Car {
@@ -91,4 +128,11 @@ fn main() {
     carro.park();
     caminhao.park();
     caminhao.unload();
+    paint_red(&carro);
+    paint_blue(&caminhao);
+    paint_green(&casa);
+    paint_vehicle_green(&caminhao);
+    paint_vehicle_green(&carro);
+    let casa2 = create_paintable_object();
+    paint_green(&casa2);
 }
