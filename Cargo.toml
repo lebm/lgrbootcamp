@@ -28,4 +28,5 @@ members = [
     "generics",
     "traits",
     "lifetimes",
+    "box_smart_pointer",
 ]
