@@ -29,4 +29,5 @@ members = [
     "traits",
     "lifetimes",
     "box_smart_pointer",
+    "rc_smart_pointer",
 ]
