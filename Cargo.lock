@@ -157,6 +157,10 @@ name = "rc_smart_pointer"
 version = "0.1.0"
 
 [[package]]
+name = "recoverable_errors"
+version = "0.1.0"
+
+[[package]]
 name = "refcell_smart_pointer"
 version = "0.1.0"
 
@@ -182,6 +186,10 @@ version = "0.1.0"
 
 [[package]]
 name = "tuple_structs"
+version = "0.1.0"
+
+[[package]]
+name = "unrecoverable_errors"
 version = "0.1.0"
 
 [[package]]

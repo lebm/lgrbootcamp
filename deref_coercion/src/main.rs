@@ -32,10 +32,10 @@ fn main() {
     // &MySmartPointer -> &Box -> &String -> &str
     print(&s);
 
-    let s0 = &s;
-    let s1 = &(*s);
-    let s2 = &(**s);
-    let s3 = &(***s);
+    let _s0 = &s;
+    let _s1 = &(*s);
+    let _s2 = &(**s);
+    let _s3 = &(***s);
 }
 
 fn print(s: &str) {

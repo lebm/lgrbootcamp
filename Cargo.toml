@@ -32,4 +32,6 @@ members = [
     "rc_smart_pointer",
     "refcell_smart_pointer",
     "deref_coercion",
+    "unrecoverable_errors",
+    "recoverable_errors",
 ]
