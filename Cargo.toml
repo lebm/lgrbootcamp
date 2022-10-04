@@ -31,4 +31,5 @@ members = [
     "box_smart_pointer",
     "rc_smart_pointer",
     "refcell_smart_pointer",
+    "deref_coercion",
 ]

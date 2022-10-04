@@ -52,6 +52,10 @@ name = "datatypes"
 version = "0.1.0"
 
 [[package]]
+name = "deref_coercion"
+version = "0.1.0"
+
+[[package]]
 name = "enums"
 version = "0.1.0"
 
