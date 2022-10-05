@@ -5,9 +5,9 @@ fn main() {
     // The Result type has many methods.
     let file = File::open("example.txt");
 
-    // Use match to extract file handle or err from Resul
+    // Use match to extract file handle or err from Result
     // match is an expression, so you can return its value and use it as an RHS.
-    // Resutl is an enaum, so match must treat all variants, Ok and Err in this case.
+    // Resutl is an enum, so match must treat all variants, Ok and Err in this case.
     // The match arms can destruct the result and extacts the value "inside" them.
     #[allow(unused_variables)]
     let file = match file {
@@ -16,7 +16,7 @@ fn main() {
             panic!("Failed to open file: {:?}", error)
         }
     };
-    //
+
     // Alternatively, you can use unwrap
     // unwrap returns the value insde Ok or panics in case of error.
     // useful for testing purposes.

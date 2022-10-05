@@ -29,9 +29,9 @@ fn main() {
 
 fn read_file(filename: &str) -> Result<String, io::Error> {
     // PROPAGATIONM THE ERROR WITH "?"
-    // The "?" operator returns the value for Ok or Some variants, or returns
-    // an error or None for the callee. It can replace the "match { Ok/Same => .., None/Err => return ..}" boilerplate.
-    // It can be used only in functions returning Result o Option.
+    // The "?" operator returns the value for Ok or Some variants, or returns an error or None for the callee.
+    // It can replace the "match { Ok/Same => .., None/Err => return ..}" boilerplate.
+    // It can be used only in functions returning Result or Option.
     let mut file = File::open(filename)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
