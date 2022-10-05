@@ -34,4 +34,7 @@ members = [
     "deref_coercion",
     "unrecoverable_errors",
     "recoverable_errors",
+    "propagation_error",
+    "result_and_option",
+    "multiple_error_types",
 ]
