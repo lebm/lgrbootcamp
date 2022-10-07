@@ -21,7 +21,7 @@ fn main() {
 // One solution, trait objects
 // fn parse_file(filename: &str) -> Result<i32, Box<dyn error::Error>> {
 // The "?" implicitly converts concrete error types into trait objects
-// Simple, but the callee will not know exactly which concrete error was returned at compile time.
+// Simple, but the caller will not know exactly which concrete error was returned at compile time.
 // let s = fs::read_to_string(filename)?;
 // let i = s.parse()?;
 // Ok(i)

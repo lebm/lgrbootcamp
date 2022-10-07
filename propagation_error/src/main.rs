@@ -29,7 +29,7 @@ fn main() {
 
 fn read_file(filename: &str) -> Result<String, io::Error> {
     // PROPAGATIONM THE ERROR WITH "?"
-    // The "?" operator returns the value for Ok or Some variants, or returns an error or None for the callee.
+    // The "?" operator returns the value for Ok or Some variants, or returns an error or None for the caller.
     // It can replace the "match { Ok/Same => .., None/Err => return ..}" boilerplate.
     // It can be used only in functions returning Result or Option.
     let mut file = File::open(filename)?;
@@ -45,7 +45,7 @@ struct User {
 
 fn get_initials(user: User) -> Option<String> {
     // chars returns an iterator that returns Some<char> for each character in the string and None when finished.
-    // if the first or last name is empty, chars returns None, so "?" returns None to the callee.
+    // if the first or last name is empty, chars returns None, so "?" returns None to the caller.
     let first_initial = user.firstname.chars().next()?;
     let last_initial = user.lastname.chars().next()?;
     // If it reaches this point, there are initials to be returned.
