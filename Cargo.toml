@@ -37,4 +37,5 @@ members = [
     "propagation_error",
     "result_and_option",
     "multiple_error_types",
+    "errors_examples",
 ]
