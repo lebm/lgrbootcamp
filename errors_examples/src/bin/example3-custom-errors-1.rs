@@ -70,8 +70,6 @@ struct Card {
 }
 
 fn parse_card(card: &str) -> Result<Card, String> {
-    // map_err maps the error type returned from parse_card)numbers to String, the error type of parse_card.
-    // ParseIntError implements "to_string"
     let mut numbers = parse_card_numbers(card).map_err(|e| e.to_string())?;
 
     let len = numbers.len();
@@ -96,8 +94,6 @@ fn parse_card(card: &str) -> Result<Card, String> {
 }
 
 fn parse_card_numbers(card: &str) -> Result<Vec<u32>, ParseIntError> {
-    // Changed unwrap to "?" to propagate the error.
-    // The return must be a Result<Vec<u32>, ParseIntError>
     let numbers = card
         .split(" ")
         //.into_iter()
