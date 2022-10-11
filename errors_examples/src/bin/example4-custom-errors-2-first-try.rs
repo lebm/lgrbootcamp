@@ -1,4 +1,4 @@
-use std::{collections::HashMap, error::Error, io, num::ParseIntError};
+use std::{collections::HashMap, error::Error, fmt::Display, io, num::ParseIntError};
 
 fn main() {
     env_logger::init();
@@ -95,9 +95,17 @@ fn parse_card(card: &str) -> Result<Card, String> {
         cvv,
     })
 }
+
+#[allow(dead_code)]
 struct ParsePaymentInfoError {
     source: Option<Box<dyn Error>>,
     msg: Option<String>,
+}
+
+impl Display for ParsePaymentInfoError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str("Parsing payment error: invalid payment info")
+    }
 }
 
 // From trait converts from one type to another

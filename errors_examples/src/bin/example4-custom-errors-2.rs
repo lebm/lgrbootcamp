@@ -1,4 +1,4 @@
-use std::{collections::HashMap, error::Error, io, num::ParseIntError};
+use std::{collections::HashMap, error::Error, fmt::Display, io};
 
 fn main() {
     env_logger::init();
@@ -38,7 +38,7 @@ fn main() {
 #[derive(Debug)]
 enum CreditCardError {
     InvalidInput(String),
-    Other(String, String),
+    Other(Box<dyn Error>, String),
 }
 
 fn get_credit_card_info(
@@ -51,8 +51,9 @@ fn get_credit_card_info(
             "No credit card was found for {name}."
         )))?;
 
-    let card = parse_card(card_string)
-        .map_err(|e| CreditCardError::Other(e, format!("{name}'s card could not be parsed")))?;
+    let card = parse_card(card_string).map_err(|e| {
+        CreditCardError::Other(Box::new(e), format!("{name}'s card could not be parsed"))
+    })?;
 
     Ok(card)
 }
@@ -72,16 +73,17 @@ struct Card {
     cvv: u32,
 }
 
-fn parse_card(card: &str) -> Result<Card, String> {
-    let mut numbers = parse_card_numbers(card).map_err(|e| e.to_string())?;
+fn parse_card(card: &str) -> Result<Card, ParsePaymentInfoError> {
+    let mut numbers = parse_card_numbers(card)?;
 
     let len = numbers.len();
     let expected_len = 4;
 
     if len != expected_len {
-        return Err(format!(
-            "Incorrect number of elements parsed. Expect {expected_len} but get {len}. Elements: {numbers:?}"
-        ));
+        return Err(ParsePaymentInfoError {
+            source: None,
+            msg: Some(format!("Incorrect number of elements parsed. Expect {expected_len} but get {len}. Elements: {numbers:?}")),
+        });
     }
 
     let cvv = numbers.pop().unwrap();
@@ -95,19 +97,23 @@ fn parse_card(card: &str) -> Result<Card, String> {
         cvv,
     })
 }
+
+#[derive(Debug)]
+#[allow(dead_code)]
 struct ParsePaymentInfoError {
     source: Option<Box<dyn Error>>,
     msg: Option<String>,
 }
 
-// From trait converts from one type to another
-// source is an optional owned reference (box) to a type implementation Error trait.
-impl From<ParseIntError> for ParsePaymentInfoError {
-    fn from(e: ParseIntError) -> Self {
-        ParsePaymentInfoError {
-            source: Some(Box::new(e)),
-            msg: None,
-        }
+impl Display for ParsePaymentInfoError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str("Parsing payment error: invalid payment info")
+    }
+}
+
+impl Error for ParsePaymentInfoError {
+    fn source(&self) -> Option<&(dyn Error + 'static)> {
+        self.source.as_deref()
     }
 }
 
@@ -115,8 +121,19 @@ fn parse_card_numbers(card: &str) -> Result<Vec<u32>, ParsePaymentInfoError> {
     let numbers = card
         .split(" ")
         //.into_iter()
-        .map(|s| s.parse())
-        .collect::<Result<Vec<u32>, _>>()?;
+        .map(|s| {
+            s.parse().map_err(|_| ParsePaymentInfoError {
+                source: None,
+                msg: Some(format!("{s:?} could not be parsed as u32")),
+            })
+        })
+        .collect::<Result<Vec<u32>, _>>()
+        .map_err(|e| ParsePaymentInfoError {
+            source: Some(Box::new(e)),
+            msg: Some(format!(
+                "Failed to parse to parse input as numbers. Input: {card}"
+            )),
+        })?;
 
     Ok(numbers)
 }
