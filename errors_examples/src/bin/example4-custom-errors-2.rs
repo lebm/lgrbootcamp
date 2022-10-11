@@ -1,4 +1,4 @@
-use std::{collections::HashMap, io, num::ParseIntError};
+use std::{collections::HashMap, error::Error, io, num::ParseIntError};
 
 fn main() {
     env_logger::init();
